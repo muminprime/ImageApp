@@ -1,0 +1,75 @@
+<html>
+	<head>
+		
+		
+		<link rel="stylesheet"  href="https://dl.dropboxusercontent.com/s/etnlaw1pzx1w051/stylelist.css?dl=0" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	</head>
+	<body>
+	<div id="contain">	
+		<div id="logoapp"></div>
+		<div id="logoamazon"></div>	
+		<div id="stopka">
+	<p style="font-size:14px; margin-left:1cm; margin-top:0.8%;">&copy; Copyright 2015 by Mateusz Sołyga and Adam Strojwąs |<a href="http://localhost:8080/"> menu główne</a> |<a href="http://localhost:8080/list">odśwież</a> |</p>
+	</div>
+
+			
+	
+	<h2 id="naglowek" class="panel-title" style="margin-left:2%; ">Lista plikow w kubełku <b><%= bucket %></b> :</h2>
+
+	<div id="boxlist" >
+	
+			
+        
+	<% for(var i=0; i<fields.length; i++) { %>
+		
+		<div id="option1">
+            <a href='<%= adresy[i] %>' style="margin-left:10px;font-size:25px;">
+                <%= names[i] %>
+            </a>
+		</div>
+		<div id="option2">
+			<input style="font-size:20px" id=delete type="button", onclick="location.href='http://localhost:8080/delete?klucz=<%= fields[i] %>'", value="Delete"/>
+		</div>
+		<div id="option3">
+			<form id="actionform" name="wartosc", action="http://localhost:8080/action", method='get'>
+			<select style="font-size:20px" name="akcja" id="combo">
+			<option name="rotate"  value="rotate">rotate</option>
+			<option name="scale"  value="scale">scale</option>
+			<option name="implode" value="implode">implode</option>
+			<option name="colorize" value="colorize">colorizee</option>
+			</select>
+		
+		
+			<input type="hidden", name='klucz', value="<%= fields[i] %>"/>
+			<input style="font-size:20px" id="val", name='wartosc', size="15"/>
+		
+			<input style="font-size:20px" type="submit",value="submit"/>
+			</form>
+		</div>
+		
+	<% } %>   
+
+	<div>
+	
+		<% if (message==1){%>
+		<dialog open id="dialogwin" >  
+		<center><h3>Powodzenie!</h3></center>  
+		<center><p>Plik został usunięty z kubełka!</p></center>
+		<center><button id="exit", onclick="location.href='http://localhost:8080/list'">OK</button></center>
+		</dialog>  
+		<%}%>		
+	    	
+	  	<% if (message==2){%>
+		<dialog open id="dialogwin" >  
+		<center><h3>Powodzenie!</h3></center>  
+		<center><p>Zadanie zostało przyjęte!</p></center>
+		<center><button id="exit", onclick="location.href='http://localhost:8080/list'">OK</button></center>
+		</dialog>  
+		<%}%>	
+	
+	
+	
+	</div>
+		</body>
+</html>

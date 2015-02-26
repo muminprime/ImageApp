@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<link rel="stylesheet"  href="https://dl.dropboxusercontent.com/s/j0nke7h3urwvkkz/style.css?dl=0" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	</head>
+	<body >
+	<div id="contain">
+	<div id="logoapp"></div>
+	<div id="logoamazon"></div>
+	<div id="bucket">
+		<p style="margin-left:10%; font-size:40px;">Idz do kontenera: </p>
+		<div id="bucket2" ><a id="adobucket" href="http://localhost:8080/list"></a>
+			<div id="bucket3">
+			<p style="margin-left:15%; margin-top:55%; font-size:30px; position:absolute"><%=bucket%></p>
+			</div>
+		</div>
+		
+	</div>	
+	<div id="addfile"> 
+		<div id="addfileblock">
+		<form action="https://<%=bucket%>.s3.amazonaws.com/" method="POST" id="sign-up-form" class="form-horizontal" enctype="multipart/form-data">	
+		<% if (message==0){%>
+		<% fields.forEach(function(elem){ %>
+		  <input type="hidden" name="<%= elem.name  %>" value="<%=elem.value %>"/>
+			<%}); %> 
+		<%}%>
+		<input style="font-size:25px; font-weight:bold;  " type="file" accept=".jpg,.png" name="file">
+		<p class="help-block"><b>Plik zostanei wysłany do kontenera <%=bucket%></b> </p>
+		<input style="font-size:25px;" type="submit" class="btn  btn-primary btn-block" value="Wyśli"/>
+		</form>
+		</div>
+	</div>
+	<% if (message==1){%>
+		<dialog open id="dialogwin" >  
+		<center><h3>Powodzenie!</h3></center>  
+		<center><p>Plik został dodany do kubełka!</p></center>
+		<center><button id="exit", onclick="location.href='http://localhost:8080'">OK</button></center>
+		</dialog>  
+	<%}%>	
+	<div id="stopka">
+	<p style="font-size:14px; margin-left:1cm; margin-top:0.8%;">&copy; Copyright 2015 by Mateusz Sołyga and Adam Strojwąs |<a href="http://localhost:8080/">odśwież</a> |</p>
+	</div>
+	<div>
+	</body>
+</html>
